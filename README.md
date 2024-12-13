@@ -36,4 +36,4 @@ Tune-Tube is a Chrome extension that allows users to customize and filter YouTub
 3. **Customize Your Feed**: Adjust video suggestions based on your preferences and keywords, making your YouTube experience more tailored.
 
 ## License:
-This project is open-source and available under the License.
+This project is open-source and available under the Apache License.
