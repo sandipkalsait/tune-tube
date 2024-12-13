@@ -1,0 +1,20 @@
+{
+  "name": "tune-tube",
+  "version": "1.0.0",
+  "main": "background.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./tailwind.css -o ./style.css --watch"
+  },
+  "keywords": [],
+  "author": "Sandip.kalsait",
+  "license": "ISC",
+  "description": "Customize your YouTube feed based on categories and filter content for kids.",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

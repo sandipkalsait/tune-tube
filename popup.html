@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Customizer</title>
+    <script src="./popup.js" defer></script>
+    <link href="./style.css" rel="stylesheet">
+    <style>
+        /* For precise width in the Chrome popup */
+        html {
+            width: max-content;
+            height: max-content;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">YouTube Customizer</h1>
+        
+        <!-- Keywords Input -->
+        <div class="mb-4">
+            <label for="keyword" class="block text-sm font-medium text-gray-700">Add Keyword:</label>
+            <input type="text" id="keyword" placeholder="Enter a keyword" 
+                class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="addKeyword" 
+                class="mt-2 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Add Keyword</button>
+        </div>
+
+        <!-- Suggested Keywords -->
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold text-gray-800">Suggested Keywords:</h2>
+            <ul id="suggestedKeywords" class="mt-2 text-sm text-gray-600 list-disc pl-4"></ul>
+        </div>
+
+        <div class="border-t pt-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-2">Kids Lock</h2>
+            <div class="flex items-center justify-between">
+                <label class="text-gray-700 font-medium">Enable Kids Lock</label>
+                <button id="toggleKidsLock" class="relative inline-flex h-6 w-12 border-2 border-gray-300 rounded-full transition-colors bg-gray-300">
+                    <span id="toggleIndicator" 
+                        class="absolute left-0 h-5 w-5 bg-white rounded-full transition-transform transform translate-x-0"></span>
+                </button>
+            </div>
+            <div id="passwordSection" class="mt-4 hidden">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+                <input type="password" id="password" placeholder="Enter password" 
+                    class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="submitPassword" 
+                    class="mt-2 w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">lock</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
