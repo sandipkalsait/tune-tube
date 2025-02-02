@@ -17,4 +17,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
         return true;
     }
+    if (message.type === 'fetchHistory') {
+        chrome.history.search({ text: '', maxResults: 10 }, (historyItems) => {
+            sendResponse({ historyItems });
+        });
+        return true;
+    }
 });

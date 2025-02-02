@@ -28,10 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle Kids Lock Toggle
     let kidsLockEnabled = false;
 
+    chrome.storage.sync.get(['kidsFilter'], (result) => {
+        kidsLockEnabled = result.kidsFilter;
+        updateKidsLockUI();
+    });
+
     toggleKidsLock.addEventListener("click", () => {
         kidsLockEnabled = !kidsLockEnabled;
+        chrome.storage.sync.set({ kidsFilter: kidsLockEnabled }, () => {
+            updateKidsLockUI();
+        });
+    });
 
-        // Update toggle appearance
+    function updateKidsLockUI() {
+        toggleKidsLock.setAttribute("data-enabled", kidsLockEnabled);
         if (kidsLockEnabled) {
             toggleKidsLock.classList.replace("bg-gray-300", "bg-blue-500");
             toggleIndicator.classList.add("translate-x-6");
@@ -41,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleIndicator.classList.remove("translate-x-6");
             passwordSection.classList.add("hidden");
         }
-    });
+    }
 
     // Handle Password Submission
     submitPasswordBtn.addEventListener("click", () => {
@@ -51,16 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        if (kidsLockEnabled) {
-            alert("Kids Lock enabled with password.");
-            // Save the password for Kids Lock
-        } else {
-            alert("Kids Lock disabled. Password cleared.");
-            // Handle password removal or verification
-        }
-
-        // Clear input field after submission
-        passwordInput.value = "";
-        if (!kidsLockEnabled) passwordSection.classList.add("hidden");
+        chrome.storage.sync.set({ password }, () => {
+            alert("Password saved.");
+            passwordInput.value = "";
+        });
     });
 });

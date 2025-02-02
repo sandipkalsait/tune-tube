@@ -31,6 +31,10 @@ function createSidePanel() {
             <input type="checkbox" id="kidFilter">
         </div>
         <button id="clearSuggestions">Clear Feed</button>
+        <div>
+            <h4>Suggested Based on Browsing History:</h4>
+            <ul id="historySuggestions"></ul>
+        </div>
     `;
 
     document.body.appendChild(panel);
@@ -39,6 +43,9 @@ function createSidePanel() {
     document.getElementById('applyFilters').addEventListener('click', applyFilters);
     document.getElementById('clearSuggestions').addEventListener('click', clearFeed);
     document.getElementById('kidFilter').addEventListener('change', toggleKidsFilter);
+
+    // Fetch and display history-based suggestions
+    fetchHistorySuggestions();
 }
 
 function applyFilters() {
@@ -65,6 +72,27 @@ function toggleKidsFilter() {
     } else {
         console.log('Kids filter disabled');
     }
+}
+
+function customSuggestions() {
+    // Logic to fetch custom suggestions goes here
+    return [
+        {
+            title: 'Video Title 1',
+            channel: 'Channel Name 1',
+            thumbnail: 'https://via.placeholder.com'
+        }]
+}
+
+function fetchHistorySuggestions() {
+    chrome.history.search({ text: '', maxResults: 10 }, (historyItems) => {
+        const historySuggestions = document.getElementById('historySuggestions');
+        historyItems.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.title;
+            historySuggestions.appendChild(listItem);
+        });
+    });
 }
 
 // Add the side panel on page load

@@ -3,7 +3,7 @@
     "name": "tune-tube",
     "version": "1.0",
     "description": "Customize your YouTube feed based on categories and filter content for kids.",
-    "permissions": ["storage", "scripting", "activeTab"],
+    "permissions": ["storage", "scripting", "activeTab", "history"],
     "host_permissions": ["https://www.youtube.com/*"],
     "action": {
       "default_popup": "popup.html",
@@ -12,5 +12,4 @@
     "background": {
       "service_worker": "background.js"
     }
-  }
-  
+}
